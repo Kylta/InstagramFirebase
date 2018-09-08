@@ -11,6 +11,7 @@
 		4692EE792143CA6400A2E4D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4692EE782143CA6400A2E4D3 /* GoogleService-Info.plist */; };
 		4694A18821441BDB006CCA2D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694A18721441BDB006CCA2D /* MainTabBarController.swift */; };
 		4694A18C21441ECB006CCA2D /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694A18B21441ECB006CCA2D /* UserProfileController.swift */; };
+		4694A19021442826006CCA2D /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4694A18F21442826006CCA2D /* UserProfileHeader.swift */; };
 		46DCA55E2143B36C008A6343 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DCA55D2143B36C008A6343 /* AppDelegate.swift */; };
 		46DCA5602143B36C008A6343 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DCA55F2143B36C008A6343 /* ViewController.swift */; };
 		46DCA5632143B36C008A6343 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DCA5612143B36C008A6343 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		4692EE782143CA6400A2E4D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4694A18721441BDB006CCA2D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		4694A18B21441ECB006CCA2D /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
+		4694A18F21442826006CCA2D /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		46DCA55A2143B36C008A6343 /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DCA55D2143B36C008A6343 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DCA55F2143B36C008A6343 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +56,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4694A18D214427D4006CCA2D /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				4694A18B21441ECB006CCA2D /* UserProfileController.swift */,
+				4694A18F21442826006CCA2D /* UserProfileHeader.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		4694A18E214427F1006CCA2D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		46DCA5512143B36C008A6343 = {
 			isa = PBXGroup;
 			children = (
@@ -75,10 +93,11 @@
 		46DCA55C2143B36C008A6343 /* InstagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				4694A18D214427D4006CCA2D /* UserProfile */,
+				4694A18E214427F1006CCA2D /* Utils */,
 				46DCA55D2143B36C008A6343 /* AppDelegate.swift */,
 				46DCA55F2143B36C008A6343 /* ViewController.swift */,
 				4694A18721441BDB006CCA2D /* MainTabBarController.swift */,
-				4694A18B21441ECB006CCA2D /* UserProfileController.swift */,
 				46DCA5612143B36C008A6343 /* Main.storyboard */,
 				46DCA5642143B36D008A6343 /* Assets.xcassets */,
 				46DCA5662143B36D008A6343 /* LaunchScreen.storyboard */,
@@ -220,6 +239,7 @@
 			files = (
 				46DCA5602143B36C008A6343 /* ViewController.swift in Sources */,
 				46DCA55E2143B36C008A6343 /* AppDelegate.swift in Sources */,
+				4694A19021442826006CCA2D /* UserProfileHeader.swift in Sources */,
 				4694A18C21441ECB006CCA2D /* UserProfileController.swift in Sources */,
 				4694A18821441BDB006CCA2D /* MainTabBarController.swift in Sources */,
 			);
