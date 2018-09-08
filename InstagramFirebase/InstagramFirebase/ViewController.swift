@@ -8,6 +8,7 @@
 
 import UIKit
 import LBTAComponents
+import Firebase
 
 class ViewController: UIViewController {
 
@@ -23,15 +24,17 @@ class ViewController: UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
     
-    let userNameTextField: UITextField = {
+    let usernameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Username"
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
     
@@ -42,16 +45,15 @@ class ViewController: UIViewController {
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.isSecureTextEntry = true
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
     
     let signUpButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Sign Up", for: .normal)
+        let button = UIButton.systemButton(title: "Sign Up", image: nil, titleColor: .white, font: UIFont.boldSystemFont(ofSize: 14), target: self, selector: #selector(handleSignUp))
         button.backgroundColor = UIColor.init(r: 149, g: 204, b: 244)
         button.layer.cornerRadius = 5
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.white, for: .normal)
+        button.isEnabled = false
         return button
     }()
     
@@ -62,9 +64,32 @@ class ViewController: UIViewController {
         
     }
     
+    @objc func handleTextInputChange() {
+        let isFormValid = emailTextField.text?.count ?? 0 > 0 && usernameTextField.text?.count ?? 0 > 0 && passwordTextField.text?.count ?? 0 > 0
+        
+        //        if isFormValid {
+        //            signUpButton.backgroundColor = UIColor.init(r: 17, g: 154, b: 237)
+        //        } else {
+        //            signUpButton.backgroundColor = UIColor.init(r: 149, g: 204, b: 244)
+        //        }
+        
+                _ = isFormValid ? (signUpButton.backgroundColor = UIColor.init(r: 17, g: 154, b: 237), signUpButton.isEnabled = true) : (signUpButton.backgroundColor = UIColor.init(r: 149, g: 204, b: 244), signUpButton.isEnabled = false)
+        
+    }
+    
+    @objc func handleSignUp() {
+        guard let email = emailTextField.text, email.count > 0, let username = usernameTextField.text, username.count > 0, let password = passwordTextField.text, password.count > 0 else { return }
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if let err = error {
+                print("Failed to register user:", err)
+            }
+            print("Successfully created user:", user?.user.uid ?? "")
+        }
+    }
+    
     fileprivate func setupViews() {
         
-        let stackFieldViews = UIStackView(arrangedSubviews: [emailTextField, userNameTextField, passwordTextField, signUpButton])
+        let stackFieldViews = UIStackView(arrangedSubviews: [emailTextField, usernameTextField, passwordTextField, signUpButton])
         stackFieldViews.distribution = .fillEqually
         stackFieldViews.axis = .vertical
         stackFieldViews.spacing = 10

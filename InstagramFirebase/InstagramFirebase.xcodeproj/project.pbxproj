@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FD0661BFC38E8A9C951DA88 /* Pods_InstagramFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AC5706E6D2D6CD130211F7C /* Pods_InstagramFirebase.framework */; };
+		4692EE792143CA6400A2E4D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4692EE782143CA6400A2E4D3 /* GoogleService-Info.plist */; };
 		46DCA55E2143B36C008A6343 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DCA55D2143B36C008A6343 /* AppDelegate.swift */; };
 		46DCA5602143B36C008A6343 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DCA55F2143B36C008A6343 /* ViewController.swift */; };
 		46DCA5632143B36C008A6343 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DCA5612143B36C008A6343 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		11BCF749272EA7BDD1944826 /* Pods-InstagramFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramFirebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramFirebase/Pods-InstagramFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		3AC5706E6D2D6CD130211F7C /* Pods_InstagramFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4692EE782143CA6400A2E4D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		46DCA55A2143B36C008A6343 /* InstagramFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DCA55D2143B36C008A6343 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DCA55F2143B36C008A6343 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				46DCA5642143B36D008A6343 /* Assets.xcassets */,
 				46DCA5662143B36D008A6343 /* LaunchScreen.storyboard */,
 				46DCA5692143B36D008A6343 /* Info.plist */,
+				4692EE782143CA6400A2E4D3 /* GoogleService-Info.plist */,
 			);
 			path = InstagramFirebase;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46DCA5682143B36D008A6343 /* LaunchScreen.storyboard in Resources */,
+				4692EE792143CA6400A2E4D3 /* GoogleService-Info.plist in Resources */,
 				46DCA5652143B36D008A6343 /* Assets.xcassets in Resources */,
 				46DCA5632143B36C008A6343 /* Main.storyboard in Resources */,
 			);
@@ -162,15 +166,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-InstagramFirebase-checkManifestLockResult.txt",
 			);
@@ -184,17 +184,21 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-InstagramFirebase/Pods-InstagramFirebase-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
