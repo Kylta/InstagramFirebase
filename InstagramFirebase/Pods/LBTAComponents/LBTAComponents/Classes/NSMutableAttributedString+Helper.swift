@@ -10,6 +10,13 @@ import Foundation
 
 extension NSMutableAttributedString {
     
+    static public func getAttributedText(topText: String, bottomText: String) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(string: topText, attributes: [NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: bottomText, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14),NSAttributedStringKey.foregroundColor:UIColor.lightGray]))
+        return attributedText
+    }
+
+    
     public func appendNewLine() {
         append(NSAttributedString(string: "\n"))
     }
