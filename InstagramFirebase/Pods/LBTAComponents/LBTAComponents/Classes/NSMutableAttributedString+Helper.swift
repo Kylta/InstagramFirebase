@@ -10,9 +10,9 @@ import Foundation
 
 extension NSMutableAttributedString {
     
-    static public func getAttributedText(topText: String, bottomText: String) -> NSAttributedString {
-        let attributedText = NSMutableAttributedString(string: topText, attributes: [NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: bottomText, attributes: [NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14),NSAttributedStringKey.foregroundColor:UIColor.lightGray]))
+    static public func getAttributedText(_ firstText: String, _ fontFirst: UIFont, _ colorTextFirst: UIColor?, _ secondText: String, _ fontSecond: UIFont, _ colorTextSecond: UIColor) -> NSAttributedString {
+        let attributedText = NSMutableAttributedString(string: firstText, attributes: [NSAttributedStringKey.font:fontFirst, NSAttributedStringKey.foregroundColor:colorTextFirst ?? .black])
+        attributedText.append(NSAttributedString(string: secondText, attributes: [NSAttributedStringKey.font:fontSecond, NSAttributedStringKey.foregroundColor:colorTextSecond]))
         return attributedText
     }
 

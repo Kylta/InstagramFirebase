@@ -52,7 +52,7 @@ class UserProfileHeader: DatasourceCell {
     
     let postsLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString.getAttributedText(topText: "11\n", bottomText: "posts")
+        let attributedText = NSMutableAttributedString.getAttributedText("11\n", UIFont.boldSystemFont(ofSize: 14), nil, "posts", UIFont.systemFont(ofSize: 14), .lightGray)
         label.attributedText = attributedText
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -61,7 +61,7 @@ class UserProfileHeader: DatasourceCell {
     
     let followersLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString.getAttributedText(topText: "11\n", bottomText: "followers")
+        let attributedText = NSMutableAttributedString.getAttributedText("11\n", UIFont.boldSystemFont(ofSize: 14), nil, "followers", UIFont.systemFont(ofSize: 14), .lightGray)
         label.attributedText = attributedText
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -70,7 +70,7 @@ class UserProfileHeader: DatasourceCell {
     
     let followingLabel: UILabel = {
         let label = UILabel()
-        var attributedText = NSMutableAttributedString.getAttributedText(topText: "11\n", bottomText: "following")
+        let attributedText = NSMutableAttributedString.getAttributedText("11\n", UIFont.boldSystemFont(ofSize: 14), nil, "following", UIFont.systemFont(ofSize: 14), .lightGray)
         label.attributedText = attributedText
         label.textAlignment = .center
         label.numberOfLines = 0

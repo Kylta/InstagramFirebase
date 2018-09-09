@@ -10,7 +10,7 @@ import UIKit
 import LBTAComponents
 import Firebase
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     let plusPhotoButton: UIButton = {
         let button = UIButton.systemButton(title: nil, image: #imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), titleColor: nil, font: nil, target: self, selector: #selector(handlePlusPhoto))
@@ -58,6 +58,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
         
         setupViews()
     }
