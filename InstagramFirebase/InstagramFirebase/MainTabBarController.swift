@@ -19,10 +19,15 @@ class MainTabBarController: UITabBarController {
                 let loginController = LoginController()
                 let navController = UINavigationController(rootViewController: loginController)
                 self.present(navController, animated: true, completion: nil)
-                return
+                
             }
+            return
         }
         
+        setupViewsController()
+    }
+    
+    func setupViewsController() {
         let layout = UICollectionViewFlowLayout()
         let userProfileController = UserProfileController(collectionViewLayout: layout)
         let navController = UINavigationController(rootViewController: userProfileController)
@@ -34,5 +39,6 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [navController, UIViewController()]
     }
+    
 
 }
