@@ -56,6 +56,14 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         return button
     }()
     
+    let alreadyHaveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedText = NSMutableAttributedString.getAttributedText("Already have an account?  ", .systemFont(ofSize: 14), .lightGray, "Sign in", .boldSystemFont(ofSize: 14), .init(r: 17, g: 154, b: 237))
+        button.setAttributedTitle(attributedText, for: .normal)
+        button.addTarget(self, action: #selector(handleAlreadyHaveAnAccount), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,7 +72,11 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         setupViews()
     }
     
-    @objc func handlePlusPhoto() {
+    @objc fileprivate func handleAlreadyHaveAnAccount() {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @objc fileprivate func handlePlusPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
@@ -113,6 +125,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
             
             let filename = UUID().uuidString
             let storageRef = Storage.storage().reference().child("profile_images").child(filename)
+            
             storageRef.putData(uploadData, metadata: nil, completion: { (metadata, err) in
                 if let err = err {
                     print("Failed to upload profile image:", err)
@@ -120,7 +133,7 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                 }
                 storageRef.downloadURL(completion: { (downloadUrl, err) in
                     if let err = err {
-                        print("Failed to get url profile image", err)
+                        print("Failed to download url profile image", err)
                     }
                     guard let profileImageUrl = downloadUrl?.absoluteString else { return }
                     
@@ -150,12 +163,14 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         stackFieldViews.axis = .vertical
         stackFieldViews.spacing = 10
         
-        [plusPhotoButton, stackFieldViews].forEach({view.addSubview($0)})
+        [plusPhotoButton, stackFieldViews, alreadyHaveAccountButton].forEach({view.addSubview($0)})
         
         plusPhotoButton.anchor(view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, topConstant: 40, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 140, heightConstant: 140)
         plusPhotoButton.anchorCenterXToSuperview()
         
         stackFieldViews.anchor(plusPhotoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 40, leftConstant: 40, bottomConstant: 0, rightConstant: 40, widthConstant: 0, heightConstant: 200)
+        
+        alreadyHaveAccountButton.anchor(nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 50)
     }
     
 }
