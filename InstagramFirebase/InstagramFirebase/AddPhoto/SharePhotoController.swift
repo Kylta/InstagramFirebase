@@ -88,7 +88,6 @@ class SharePhotoController: UIViewController {
             print("Successfully saved info to DB:")
             self.dismiss(animated: true, completion: nil)
         }
-
     }
     
     fileprivate func setupImageAndTextviews() {
