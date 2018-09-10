@@ -16,6 +16,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     var images = [UIImage]()
     var assets = [PHAsset]()
     var selectedImage: UIImage?
+    var header: PhotoSelectorHeader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         collectionView?.register(PhotoSelectorHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
         
         setupNavigationButtons()
+        collectionView?.backgroundColor = .white
         
         fetchPhotos()
     }
@@ -31,12 +33,15 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedImage = images[indexPath.item]
         self.collectionView?.reloadData()
+        
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
     private func assetsFetchOptions() -> PHFetchOptions {
         let fetchOptions = PHFetchOptions()
-//        fetchOptions.fetchLimit = 30
-        print(fetchOptions.fetchLimit)
+//        fetchOptions.fetchLimit = 3
+//        print(fetchOptions.fetchLimit)
         let sortDescriptors = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchOptions.sortDescriptors = [sortDescriptors]
         return fetchOptions
@@ -85,6 +90,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
 
+        self.header = header
 //        header.photoImageView.image = selectedImage
         
         if let selectedImage = selectedImage {
@@ -140,6 +146,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     
     @objc private func handleNext() {
         print("Handling next")
+        let sharePhotoController = SharePhotoController()
+        sharePhotoController.selectedImage = header?.photoImageView.image
+        navigationController?.pushViewController(sharePhotoController, animated: true)
     }
     
     @objc private func handleCancel() {
