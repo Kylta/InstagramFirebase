@@ -26,7 +26,21 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         fetchUser()
         setupLogOut()
-        fetchPosts()
+//        fetchPosts()
+        fetchOrderedPosts()
+    }
+    
+    fileprivate func fetchOrderedPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String:Any] else { return }
+            let post = Post(dictionary: dictionary)
+            self.posts.append(post)
+            self.collectionView?.reloadData()
+        }) { (err) in
+            print("Failed to fetch post:", err)
+        }
     }
     
     fileprivate func fetchPosts() {
@@ -85,8 +99,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfileCell
-        
-        cell.post = self.posts[indexPath.item]
+        cell.post = posts.reversed()[indexPath.item]
         return cell
     }
     

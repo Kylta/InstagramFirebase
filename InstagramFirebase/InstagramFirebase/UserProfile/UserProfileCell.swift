@@ -20,8 +20,6 @@ class UserProfileCell: UICollectionViewCell {
     
     let photoImageView: CachedImageView = {
         let iv = CachedImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
         return iv
     }()
     
