@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SharePhotoController: UIViewController {
     
@@ -43,7 +44,51 @@ class SharePhotoController: UIViewController {
     }
     
     @objc fileprivate func handleShare() {
-        print("Handle share")
+        let filename = UUID().uuidString
+        
+        guard let caption = textView.text, caption.count > 0 else { return }
+        guard let image = selectedImage else { return }
+        guard let uploadData = UIImageJPEGRepresentation(image, 0.5) else { return }
+        
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        let storageRef = Storage.storage().reference().child("posts").child(filename)
+        storageRef.putData(uploadData, metadata: nil) { (_, err) in
+            if let err = err {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                print("Failed to put data:", err)
+                return
+            }
+            storageRef.downloadURL(completion: { (downloadUrl, err) in
+                if let err = err {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                    print("Failed to retrieve downloadURL:", err)
+                    return
+                }
+                guard let imageUrl = downloadUrl?.absoluteString else { return }
+                print("Successfully upload post image:", imageUrl)
+                
+                self.saveToDatabaseWithImageUrl(imageUrl: imageUrl)
+            })
+        }
+    }
+    
+    fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
+        guard let caption = textView.text else { return }
+        guard let postImage = selectedImage else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let userPostRef = Database.database().reference().child("posts").child(uid)
+        let ref = userPostRef.childByAutoId()
+        let values: [String:Any] = ["imageUrl":imageUrl, "caption":caption, "imageWidth":postImage.size.width, "imageHeight":postImage.size.height, "creationDate":Date().timeIntervalSinceReferenceDate]
+        ref.updateChildValues(values) { (err, ref) in
+            if let err = err {
+                print("Failed to save post to DB:", err)
+                return
+            }
+            print("Successfully saved info to DB:")
+            self.dismiss(animated: true, completion: nil)
+        }
+
     }
     
     fileprivate func setupImageAndTextviews() {
